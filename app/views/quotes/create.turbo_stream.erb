@@ -5,5 +5,6 @@
   <%# render @quote %>
 <% end %>
 
-
 <%= turbo_stream.update Quote.new, "" %>
+
+<%= turbo_stream.append "flash", partial: "layouts/flash" %>

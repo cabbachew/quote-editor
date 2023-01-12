@@ -1,2 +1,4 @@
 <%# turbo_stream.remove "quote_#{@quote.id}" %>
 <%= turbo_stream.remove @quote %>
+
+<%= turbo_stream.append "flash", partial: "layouts/flash" %>
