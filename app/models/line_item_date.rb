@@ -3,5 +3,5 @@ class LineItemDate < ApplicationRecord
 
   validates :date, presence: true, uniqueness: { scope: :quote_id }
 
-  scope :ordered -> { order(date: :asc) }
+  scope :ordered, -> { order(date: :asc) }
 end
