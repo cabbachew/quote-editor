@@ -1,5 +1,6 @@
 class Quote < ApplicationRecord
   has_many :line_item_dates, dependent: :destroy
+  has_many :line_items, through: :line_item_dates
 
   belongs_to :company
 
@@ -20,4 +21,8 @@ class Quote < ApplicationRecord
   after_destroy_commit ->(quote) { broadcast_remove_to quote.company, "quotes" } # No asynchronous equivalent
   # Combine the three callbacks above into a single method:
   # broadcasts_to ->(quote) { [quote.company, "quotes"] }, inserts_by: prepend
+
+  def total_price
+    line_items.sum(&:total_price)
+  end
 end
